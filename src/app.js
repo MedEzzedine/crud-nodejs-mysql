@@ -2,8 +2,7 @@ import express from "express";
 import path from "path";
 import morgan from "morgan";
 import { createRequire } from "module";
-const require = createRequire(import.meta.url);
-const db_con = require("./db.cjs");
+import db_con from "./db.js";
 var databaseExists = false;
 
 import customerRoutes from "./routes/customer.routes.js";

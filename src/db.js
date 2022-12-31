@@ -1,10 +1,11 @@
-const mysql = require("mysql");
+import mysql from "mysql2";
 
 let db_con = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "pwd",
   port: 3306,
+  database: "customersdb",
 });
 
-module.exports = db_con;
+export default db_con;
