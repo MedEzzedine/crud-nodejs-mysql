@@ -36,8 +36,6 @@ db_con.connect((err) => {
   }
 });
 
-await new Promise((resolve) => setTimeout(resolve, 3000));
-
 const databaseName = "customersdb";
 const createQuery = `CREATE DATABASE ${databaseName};`;
 const useQuery = `use ${databaseName};`;
