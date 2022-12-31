@@ -4,6 +4,7 @@ import morgan from "morgan";
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 const db_con = require("./db.cjs");
+var databaseExists = false;
 
 import customerRoutes from "./routes/customer.routes.js";
 import { fileURLToPath } from "url";
@@ -30,9 +31,12 @@ db_con.connect((err) => {
   if (err) {
     console.log("Database Connection Failed !!!", err);
   } else {
+    databaseExists = true;
     console.log("connected to Database");
   }
 });
+
+await new Promise((resolve) => setTimeout(resolve, 3000));
 
 const databaseName = "customersdb";
 const createQuery = `CREATE DATABASE ${databaseName};`;
@@ -40,22 +44,24 @@ const useQuery = `use ${databaseName};`;
 const createTableQuery =
   "CREATE TABLE customer (id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, name VARCHAR(50) NOT NULL, address VARCHAR(100) NOT NULL, phone VARCHAR(15));";
 
-try {
-  db_con.query(createQuery, (err) => {
-    if (err) throw err;
+if (!databaseExists) {
+  try {
+    db_con.query(createQuery, (err) => {
+      if (err) throw err;
 
-    console.log("Database created successfully!");
-    db_con.query(useQuery, (err1) => {
-      if (err1) throw err1;
-      console.log("Used database successfully!");
-      db_con.query(createTableQuery, (err2) => {
-        if (err2) throw err2;
-        console.log("Created table successfully!");
+      console.log("Database created successfully!");
+      db_con.query(useQuery, (err1) => {
+        if (err1) throw err1;
+        console.log("Used database successfully!");
+        db_con.query(createTableQuery, (err2) => {
+          if (err2) throw err2;
+          console.log("Created table successfully!");
+        });
       });
     });
-  });
-} catch (error) {
-  console.log(`Database ${databaseName} already exists`);
+  } catch (error) {
+    console.log(`Database ${databaseName} already exists`);
+  }
 }
 
 // starting the server
