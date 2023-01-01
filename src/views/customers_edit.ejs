@@ -12,20 +12,23 @@
             placeholder="Name"
             class="form-control mb-3"
             autofocus
+            required
           />
           <input
             type="text"
             name="address"
             value="<%= customer.address%>"
-            placeholder="Address"
+            placeholder="Email"
             class="form-control mb-3"
+            required
           />
           <input
             type="text"
             name="phone"
             value="<%= customer.phone%>"
-            placeholder="Phone"
+            placeholder="Phone Number"
             class="form-control mb-3"
+            required
           />
 
           <button type="submit" class="btn btn-primary">save customer</button>

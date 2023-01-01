@@ -3,7 +3,7 @@ import mysql from "mysql2";
 let db_con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "pwd",
+  password: "TrueDamage",
   port: 3306,
   database: "customersdb",
 });

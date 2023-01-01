@@ -2,3 +2,29 @@ body {
   background: #202020;
   color: white;
 }
+
+.row {
+  /* box-sizing: content-box !important; */
+  /* width: min-content; */
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.col-md-7 {
+  z-index: 4 !important;
+  position: relative !important;
+}
+
+.col-md-5 {
+  z-index: 4 !important;
+  position: relative !important;
+  padding-bottom: 5%;
+}
+
+/* td {
+  word-wrap: break-word;
+} */
+
+/* table {
+  table-layout: fixed;
+} */
